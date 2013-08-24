@@ -16,3 +16,7 @@ gem 'beeminder'
 group :doc do
   gem 'sdoc', require: false
 end
+
+group :development do
+  gem 'dotenv-rails'
+end
