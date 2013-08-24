@@ -11,6 +11,8 @@ Sequel.migration do
       column :access_token, "text", :null=>false
       
       primary_key [:username]
+      
+      index [:access_token], :name=>:users_access_token_key, :unique=>true
     end
   end
 end

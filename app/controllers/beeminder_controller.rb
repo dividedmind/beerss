@@ -8,9 +8,13 @@ class BeeminderController < ApplicationController
   end
 
   def callback
-    User.find_or_create(username: params[:username]).update params.slice(:access_token)
-    session[:username] = params['username']
-    redirect_to root_path
+    user = User.of_access_token params['access_token']
+    if user
+      session[:username] = user.username
+      redirect_to root_path
+    else
+      render text: 'Wrong authorization', status: 401
+    end
   end
   
   private
